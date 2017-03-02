@@ -1,2 +1,6 @@
 /skye.sln
 /bomg.csproj.user
+/bin
+/obj
+/packages
+/.vs/skye/v14/*.suo
