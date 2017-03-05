@@ -51,7 +51,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationIcon>icoBomg1.ico</ApplicationIcon>
+    <ApplicationIcon>bomg-2.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -212,7 +212,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icoBomg1.ico" />
+    <Content Include="bomg-2.ico" />
     <None Include="Resources\page_white_world_bw.png" />
     <None Include="Resources\page_white_gray_green.png" />
     <None Include="Resources\transmit_blue.png" />

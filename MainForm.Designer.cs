@@ -385,21 +385,21 @@ namespace bzit.bomg
             // updateIconsToolMenuItem
             // 
             this.updateIconsToolMenuItem.Name = "updateIconsToolMenuItem";
-            this.updateIconsToolMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.updateIconsToolMenuItem.Size = new System.Drawing.Size(143, 22);
             this.updateIconsToolMenuItem.Text = "&Update Icons";
             this.updateIconsToolMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // toolStripSeparator14
             // 
             this.toolStripSeparator14.Name = "toolStripSeparator14";
-            this.toolStripSeparator14.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator14.Size = new System.Drawing.Size(140, 6);
             // 
             // optionsToolMenuItem
             // 
             this.optionsToolMenuItem.Image = global::bzit.bomg.Properties.Resources.cog;
             this.optionsToolMenuItem.Name = "optionsToolMenuItem";
             this.optionsToolMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
-            this.optionsToolMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.optionsToolMenuItem.Size = new System.Drawing.Size(143, 22);
             this.optionsToolMenuItem.Text = "&Options";
             this.optionsToolMenuItem.Click += new System.EventHandler(this.optionsToolStripMenuItem1_Click);
             // 
