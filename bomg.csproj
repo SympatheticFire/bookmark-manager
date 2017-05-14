@@ -53,7 +53,7 @@
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
-    <ApplicationIcon>bomg-2.ico</ApplicationIcon>
+    <ApplicationIcon>bomg-4.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
@@ -204,7 +204,6 @@
     <EmbeddedResource Include="RyzStudio\Windows\Forms\BigButton.resx">
       <DependentUpon>BigButton.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="app.config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -218,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bomg-2.ico" />
+    <Content Include="bomg-4.ico" />
     <None Include="Resources\page_white_world_bw.png" />
     <None Include="Resources\page_white_gray_green.png" />
     <None Include="Resources\transmit_blue.png" />
