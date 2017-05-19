@@ -72,11 +72,18 @@ namespace bzit.bomg
             // load icon
             if (this.IconDatabase.HasIcon(tag.Address))
             {
-                Image icon = this.IconDatabase.GetIcon(tag.Address);
-                if (icon != null)
+                try
                 {
-                    tn.TreeView.ImageList.Images.Add(tag.Address, icon);
-                    tn.ImageKey = tn.SelectedImageKey = tag.Address;
+                    Image icon = this.IconDatabase.GetIcon(tag.Address);
+                    if (icon != null)
+                    {
+                        tn.TreeView.ImageList.Images.Add(tag.Address, icon);
+                        tn.ImageKey = tn.SelectedImageKey = tag.Address;
+                    }
+                }
+                catch
+                {
+                    // do nothing
                 }
             }
         }

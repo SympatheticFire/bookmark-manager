@@ -96,10 +96,7 @@ namespace RyzStudio.IO
             return rv;
         }
 
-        public bool loadFromXml()
-        {
-            return loadFromXml(lastUsedFileName);
-        }
+        public bool loadFromXml() { return loadFromXml(lastUsedFileName); }
 
         public bool loadFromXml(string file_name)
         {
@@ -203,10 +200,7 @@ namespace RyzStudio.IO
             return rv;
         }
 
-        public bool saveToXml()
-        {
-            return saveToXml(lastUsedFileName);
-        }
+        public bool saveToXml() { return saveToXml(lastUsedFileName); }
 
         public bool saveToXml(string file_name)
         {
@@ -253,6 +247,7 @@ namespace RyzStudio.IO
         #endregion
         
         protected virtual void loadFromXmlDocument(ref XmlDocument xml_doc) { }
+
         protected virtual void saveToXmlTextWriter(ref XmlTextWriter writer) { }
 
         #region public methods (conversions)

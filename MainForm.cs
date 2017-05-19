@@ -36,10 +36,10 @@ namespace bzit.bomg
             bool rv = false;
             if (File.Exists(iconDBPath))
             {
-                rv = this.IconDatabase.Load(iconDBPath);
+                rv = this.IconDatabase.LoadFile(iconDBPath);
                 if (!rv)
                 {
-                    rv = this.IconDatabase.Create(iconDBPath, true);
+                    rv = this.IconDatabase.CreateSpecial(iconDBPath, true);
                     if (!rv)
                     {
                         MessageBox.Show("Can not find icon database. [" + this.IconDatabase.LastError + "]");
@@ -49,7 +49,7 @@ namespace bzit.bomg
             }
             else
             {
-                rv = this.IconDatabase.Create(iconDBPath, true);
+                rv = this.IconDatabase.CreateSpecial(iconDBPath, true);
                 if (!rv)
                 {
                     MessageBox.Show("Can not find icon database. [" + this.IconDatabase.LastError + "]");

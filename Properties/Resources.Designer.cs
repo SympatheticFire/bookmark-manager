@@ -89,7 +89,7 @@ namespace bzit.bomg.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 0.2.0.077 beta.
+        ///   Looks up a localized string similar to 0.2.0.082 beta.
         /// </summary>
         internal static string app_version {
             get {

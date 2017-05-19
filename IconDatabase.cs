@@ -5,7 +5,7 @@ using RyzStudio.Data.SQLite;
 
 namespace bzit.bomg
 {
-    public class IconDatabase : SQLiteDatabase
+    public class IconDatabase : SQLiteDatabase2
     {
         public IconDatabase()
         {
@@ -14,32 +14,30 @@ namespace bzit.bomg
 
         protected override bool Prepare()
         {
-            if (database == null)
+            if (dbConnection == null)
             {
                 return false;
             }
             
-            return this.DoNonQuery(@"
-                BEGIN TRANSACTION;
+            return this.DoNonQuery(@"                
                 CREATE TABLE bzt_app_bomg_icons 
                 (
                     ico_id INTEGER PRIMARY KEY, 
                     ico_key TEXT,
                     ico_hash TEXT,
                     ico_content BLOB
-                );
-                COMMIT;
-            ");
+                )                
+            ") >= 0;
         }
         
 #region public methods
 
         public bool HasIcon(string url)
         {
-            return this.DoQueryExist("SELECT 1 FROM bzt_app_bomg_icons WHERE ico_key='" + escapeStringOut(url) + "'");
+            return this.DoQueryExist("SELECT 1 FROM bzt_app_bomg_icons WHERE ico_key='" + SQLiteDatabase2.EscapeValue(url) + "'");
         }
 
-        public bool AddIcon(string url, Image image)
+/*        public bool AddIcon(string url, Image image)
         {
             if (string.IsNullOrWhiteSpace(url))
             {
@@ -53,13 +51,13 @@ namespace bzit.bomg
             
             if (this.HasIcon(url))
             {
-                return this.DoNonQuery("UPDATE bzt_app_bomg_icons SET='" + imageToSQLString(image) + "' WHERE ico_key='" + escapeStringOut(url) + "';");
+                return this.DoNonQuery("UPDATE bzt_app_bomg_icons SET='" + imageToSQLString(image) + "' WHERE ico_key='" + SQLiteDatabase2.escapeValue(url) + "';") >= 0;
             }
             else
             {
-                return this.DoNonQuery("INSERT INTO bzt_app_bomg_icons (ico_key, ico_content) VALUES ('" + escapeStringOut(url) + "', '" + imageToSQLString(image) + "');");
+                return this.DoNonQuery("INSERT INTO bzt_app_bomg_icons (ico_key, ico_content) VALUES ('" + SQLiteDatabase2.escapeValue(url) + "', '" + imageToSQLString(image) + "');") >= 0;
             }
-        }
+        }*/
 
         public bool AddIcon(string url, byte[] image)
         {
@@ -75,11 +73,11 @@ namespace bzit.bomg
             
             if (this.HasIcon(url))
             {
-                return this.DoNonQuery("UPDATE bzt_app_bomg_icons SET='" + bytesToSQLString(image) + "' WHERE ico_key='" + escapeStringOut(url) + "';");
+                return this.DoNonQuery("UPDATE bzt_app_bomg_icons SET='" + bytesToSQLString(image) + "' WHERE ico_key='" + SQLiteDatabase2.EscapeValue(url) + "';") >= 0;
             }
             else
             {
-                return this.DoNonQuery("INSERT INTO bzt_app_bomg_icons (ico_key, ico_content) VALUES ('" + escapeStringOut(url) + "', '" + bytesToSQLString(image) + "');");
+                return this.DoNonQuery("INSERT INTO bzt_app_bomg_icons (ico_key, ico_content) VALUES ('" + SQLiteDatabase2.EscapeValue(url) + "', '" + bytesToSQLString(image) + "');") >= 0;
             }
         }
 
@@ -90,7 +88,7 @@ namespace bzit.bomg
                 return null;
             }
             
-            string rs = this.DoQuerySingle("SELECT ico_content FROM bzt_app_bomg_icons WHERE ico_key='" + escapeStringOut(url) + "'");
+            string rs = this.DoQuerySingle("SELECT ico_content FROM bzt_app_bomg_icons WHERE ico_key='" + SQLiteDatabase2.EscapeValue(url) + "'");
             return sqlStringToImage(rs);
         }
 
@@ -101,17 +99,12 @@ namespace bzit.bomg
                 return;
             }
             
-            this.DoNonQuery("DELETE FROM bzt_app_bomg_icons WHERE ico_key='" + escapeStringOut(url) + "';");
+            this.DoNonQuery("DELETE FROM bzt_app_bomg_icons WHERE ico_key='" + SQLiteDatabase2.EscapeValue(url) + "';");
         }
         
 #endregion
         
-        public static string escapeStringOut(string text)
-        {
-            return text.Replace("\"", "\\\"").Replace("\t", "\\t").Replace("\r", " \\r").Replace("\n", "\\n");
-        }
-
-        public string imageToSQLString(Image image)
+        protected string imageToSQLString(Image image)
         {
             MemoryStream stream = new MemoryStream();
             image.Save(stream, new System.Drawing.Imaging.ImageFormat(image.RawFormat.Guid));
@@ -122,13 +115,13 @@ namespace bzit.bomg
             return bytesToSQLString(byteArray);
         }
 
-        public string bytesToSQLString(byte[] image)
+        protected string bytesToSQLString(byte[] image)
         {
             return Convert.ToBase64String(image);
         }
 
-        public Image sqlStringToImage(string base64_string)
-        {
+        protected Image sqlStringToImage(string base64_string)
+        {            
             byte[] byteArray2 = Convert.FromBase64String(base64_string);
 
             MemoryStream stream2 = new MemoryStream();
